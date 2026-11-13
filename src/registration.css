@@ -1,0 +1,38 @@
+.intro { margin-bottom: 1.75rem; }
+.intro h1 { margin-block: .38rem .55rem; }
+.intro > p:last-child { color: var(--muted); font-size: clamp(1rem, 2vw, 1.15rem); max-width: 60ch; }
+.registration-grid { display: grid; grid-template-columns: minmax(0, 1.9fr) minmax(0, 1fr); align-items: start; gap: 1.5rem; }
+.form-card { padding: clamp(1.15rem, 3vw, 2rem); }
+.form-intro { margin-top: .3rem; font-size: .88rem; }
+.field-block { min-inline-size: 0; padding: 0; border: 0; margin: 1.35rem 0; }
+legend { padding: 0; margin-bottom: .65rem; font-weight: 750; }
+.method-grid, .detail-grid, .address-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; }
+.method { display: flex; gap: .65rem; align-items: flex-start; min-height: 86px; padding: .86rem .75rem; border: 1px solid var(--line); border-radius: 10px; cursor: pointer; }
+.method:has(:checked) { border-color: #367a5d; background: #ecf5ee; }
+.method input { margin: .15rem 0 0; width: 1rem; height: 1rem; flex: none; accent-color: var(--green); }
+.method strong, .method small { display: block; }
+.method strong { font-size: .9rem; }
+.method small { color: var(--muted); font-size: .78rem; margin-top: .3rem; line-height: 1.35; }
+.detail-grid label, .address-grid label { display: grid; align-content: start; gap: .35rem; font-size: .87rem; font-weight: 650; }
+.address-grid { grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr); margin-top: .65rem; }
+input:not([type=radio]), select { width: 100%; min-width: 0; min-height: 46px; padding: .55rem .65rem; font: inherit; font-size: 1rem; font-weight: 400; color: var(--ink); border: 1px solid #a8b9ad; background: white; border-radius: 8px; }
+[aria-invalid=true] { border-color: #a12228 !important; }
+.error { color: #9a202a; font-size: .85rem; }
+.form-card > .error { margin-bottom: .75rem; }
+.form-note { margin-top: .75rem; font-size: .8rem; }
+.office-card { overflow: hidden; background: #e6efe3; border: 1px solid #d7e3d6; border-radius: 20px; }
+.office-card img { display: block; width: 100%; aspect-ratio: 1.55; object-fit: cover; }
+.office-copy { padding: 1.4rem; }
+.office-copy h2 { margin-block: .3rem .65rem; }
+.office-copy a { display: inline-block; margin-top: .8rem; font-weight: 650; }
+@media (max-width: 830px) {
+  .registration-grid { grid-template-columns: 1fr; }
+  .office-card { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .office-card img { height: 100%; }
+}
+@media (max-width: 520px) {
+  .method-grid, .detail-grid, .office-card { grid-template-columns: 1fr; }
+  .method { min-height: 68px; }
+  .office-card img { height: auto; }
+  .button { width: 100%; }
+}

@@ -1,0 +1,89 @@
+<div class="intro">
+  <p class="eyebrow">Kleiderspendenportal</p>
+  <h1>Kleidung spenden.</h1>
+  <p>Registriere deine Kleiderspende und wähle, welche Krisenregion du unterstützen möchtest.</p>
+</div>
+
+<div class="registration-grid">
+  <form class="card form-card" [formGroup]="form" (ngSubmit)="register()" novalidate>
+    <h2>Spende registrieren</h2>
+    <p class="muted form-intro">Alle angezeigten Formularfelder sind Pflichtfelder.</p>
+
+    <fieldset class="field-block">
+      <legend>Wie möchtest du spenden?</legend>
+      <div class="method-grid">
+        <label class="method">
+          <input type="radio" name="method" formControlName="method" value="office" (change)="changeMethod('office')">
+          <span><strong>Übergabe an der Geschäftsstelle</strong><small>Du bringst die Kleidung selbst vorbei.</small></span>
+        </label>
+        <label class="method">
+          <input type="radio" name="method" formControlName="method" value="pickup" (change)="changeMethod('pickup')">
+          <span><strong>Abholung</strong><small>Unser Sammelfahrzeug holt sie ab.</small></span>
+        </label>
+      </div>
+    </fieldset>
+
+    @if (form.controls.method.value === 'pickup') {
+      <fieldset class="field-block" formGroupName="address" aria-describedby="coverage">
+        <legend>Abholadresse</legend>
+        <p class="muted" id="coverage">Die Postleitzahl muss mit {{ prefix }} beginnen.</p>
+        <div class="address-grid">
+          <label>Straße
+            <input formControlName="street" autocomplete="address-line1" maxlength="100" required [attr.aria-invalid]="invalid(address.controls.street)">
+            @if (invalid(address.controls.street)) { <small class="error">Bitte gib die Straße ein.</small> }
+          </label>
+          <label>Hausnummer
+            <input formControlName="house" maxlength="15" required [attr.aria-invalid]="invalid(address.controls.house)">
+            @if (invalid(address.controls.house)) { <small class="error">Bitte gib die Hausnummer ein.</small> }
+          </label>
+          <label>PLZ
+            <input formControlName="postcode" autocomplete="postal-code" inputmode="numeric" maxlength="5" required [attr.aria-invalid]="invalid(address.controls.postcode)" aria-describedby="coverage">
+            @if (invalid(address.controls.postcode)) {
+              <small class="error">{{ address.controls.postcode.hasError('coverage') ? 'Die PLZ liegt außerhalb des Abholgebiets.' : 'Bitte gib eine fünfstellige PLZ ein.' }}</small>
+            }
+          </label>
+          <label>Ort
+            <input formControlName="city" autocomplete="address-level2" maxlength="80" required [attr.aria-invalid]="invalid(address.controls.city)">
+            @if (invalid(address.controls.city)) { <small class="error">Bitte gib den Ort ein.</small> }
+          </label>
+        </div>
+      </fieldset>
+    }
+
+    <fieldset class="field-block">
+      <legend>Was und wohin möchtest du spenden?</legend>
+      <div class="detail-grid">
+        <label>Art der Kleidung
+          <select formControlName="clothing" required [attr.aria-invalid]="invalid(form.controls.clothing)">
+            <option value="" disabled>Art auswählen</option>
+            @for (item of clothing; track item) { <option [value]="item">{{ item }}</option> }
+          </select>
+          @if (invalid(form.controls.clothing)) { <small class="error">Bitte wähle eine Kleidungsart.</small> }
+        </label>
+        <label>Krisengebiet
+          <select formControlName="region" required [attr.aria-invalid]="invalid(form.controls.region)">
+            <option value="" disabled>Krisengebiet auswählen</option>
+            @for (region of regions; track region) { <option [value]="region">{{ region }}</option> }
+          </select>
+          @if (invalid(form.controls.region)) { <small class="error">Bitte wähle ein Krisengebiet.</small> }
+        </label>
+      </div>
+    </fieldset>
+
+    @if (submitted() && form.invalid) {
+      <p class="error" role="alert">Bitte überprüfe die markierten Angaben.</p>
+    }
+    <button type="submit" class="button">Spende registrieren <span aria-hidden="true">→</span></button>
+    <p class="muted form-note">Demo der Fallstudie. Die Registrierung erfolgt lokal im Browser.</p>
+  </form>
+
+  <aside class="office-card">
+    <img src="kleiderspende.webp" alt="Gefaltete Kleidung in einem Spendenkarton">
+    <div class="office-copy">
+      <p class="eyebrow">Vor Ort spenden</p>
+      <h2>Unsere Geschäftsstelle</h2>
+      <address>{{ office.street }}<br>{{ office.postcode }} {{ office.city }}</address>
+      <a routerLink="/geschaeftsstelle">Zur Geschäftsstelle <span aria-hidden="true">↗</span></a>
+    </div>
+  </aside>
+</div>

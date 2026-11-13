@@ -1,0 +1,22 @@
+<header class="site-header">
+  <div class="shell header-inner">
+    <a class="brand" routerLink="/" aria-label="Kleiderbrücke – Startseite">
+      <span class="brand-icon" aria-hidden="true"><span></span></span>
+      <span>Kleiderbrücke<small>Kleiderspendenportal</small></span>
+    </a>
+    <nav aria-label="Hauptnavigation">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" ariaCurrentWhenActive="page">Spenden</a>
+      <a routerLink="/geschaeftsstelle" routerLinkActive="active" ariaCurrentWhenActive="page">Geschäftsstelle</a>
+    </nav>
+  </div>
+</header>
+<main id="inhalt" class="shell main"><router-outlet /></main>
+<footer class="site-footer">
+  <div class="shell footer-inner">
+    <span><strong>Kleiderbrücke</strong> · Studienprojekt</span>
+    <nav aria-label="Rechtliche Hinweise">
+      <a routerLink="/impressum">Impressum</a>
+      <a routerLink="/datenschutz">Datenschutz</a>
+    </nav>
+  </div>
+</footer>

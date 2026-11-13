@@ -1,0 +1,22 @@
+<section class="card page-card">
+  @switch (page) {
+    @case ('office') {
+      <h1>Geschäftsstelle</h1>
+      <p>Wähle bei der persönlichen Abgabe am Tablet die Option „Übergabe an der Geschäftsstelle“.</p>
+      <address><strong>Kleiderbrücke</strong><br>{{ office.street }}<br>{{ office.postcode }} {{ office.city }}</address>
+      <p>Das Sammelfahrzeug ist für Postleitzahlen mit dem Anfang {{ prefix }} vorgesehen.</p>
+      <p class="muted">Die Geschäftsstelle und ihre Adresse sind fiktiv.</p>
+    }
+    @case ('legal') {
+      <h1>Impressum</h1>
+      <p>Kleiderbrücke ist ein fiktiver Verein im Rahmen der Fallstudie IPWA01-01 an der IU Internationalen Hochschule.</p>
+      <p>Dieses Portal dient der Demonstration des Ablaufs. Die angegebene Geschäftsstelle ist eine Beispieladresse.</p>
+    }
+    @case ('privacy') {
+      <h1>Datenschutz</h1>
+      <p>Die Anwendung verarbeitet deine Eingaben im Arbeitsspeicher des Browsers. Sobald du die Seite neu lädst oder eine neue Spende startest, wird die vorherige Bestätigung verworfen.</p>
+      <p>Die Anwendung übermittelt keine Formulardaten. Verwende für die Demonstration eine Beispieladresse.</p>
+    }
+  }
+  <a routerLink="/">Zum Spendenformular <span aria-hidden="true">→</span></a>
+</section>

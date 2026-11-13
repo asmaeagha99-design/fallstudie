@@ -1,0 +1,19 @@
+<section class="card page-card">
+  @if (donation(); as entry) {
+    <p class="eyebrow">✓ Registrierung bestätigt</p>
+    <h1>Danke für deine Kleiderspende!</h1>
+    <p>Deine Spende wurde für diese Sitzung im Browser registriert.</p>
+    <dl class="summary">
+      <div><dt>Spendenweg</dt><dd>{{ entry.method }}</dd></div>
+      <div><dt>Art der Kleidung</dt><dd>{{ entry.clothing }}</dd></div>
+      <div><dt>Krisengebiet</dt><dd>{{ entry.region }}</dd></div>
+      <div><dt>Datum der Registrierung</dt><dd>{{ entry.date }}</dd></div>
+      <div><dt>Uhrzeit der Registrierung</dt><dd>{{ entry.time }} Uhr</dd></div>
+      <div><dt>Ort</dt><dd>{{ entry.place }}</dd></div>
+    </dl>
+  } @else {
+    <h1>Keine Registrierung vorhanden</h1>
+    <p>Öffne das Spendenformular, um eine neue Kleiderspende zu registrieren.</p>
+  }
+  <a class="button" routerLink="/" (click)="reset()">Neue Spende registrieren <span aria-hidden="true">→</span></a>
+</section>
